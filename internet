@@ -1,0 +1,9 @@
+window.addEventListener("offline", (event) => {
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "OFFline";
+});
+
+window.addEventListener("online", (event) => {
+  const statusDisplay = document.getElementById("status");
+  statusDisplay.textContent = "Online";
+});
