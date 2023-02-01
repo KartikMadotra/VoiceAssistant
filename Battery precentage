@@ -1,0 +1,145 @@
+
+(function() {
+  let batterySupported = document.getElementById("battery-supported"),
+    batteryLevel = document.getElementById("battery-level"),
+    chargingStatus = document.getElementById("charging-status"),
+    batteryCharged = document.getElementById("battery-charged"),
+    batteryDischarged = document.getElementById("battery-discharged");
+
+  let success = function(battery) {
+    if (battery) {
+      function setStatus() {
+        console.log("Set status");
+        batteryLevel.innerHTML = Math.round(battery.level * 100) + "%";
+        chargingStatus.innerHTML = (battery.charging) ? "" : "not ";
+        batteryCharged.innerHTML = (battery.chargingTime == "Infinity") ?         
+"Infinity" : parseInt(battery.chargingTime / 60, 10);
+        batteryDischarged.innerHTML = (battery.dischargingTime == "Infinity") 
+? "Infinity" : parseInt(battery.dischargingTime / 60, 10);
+      }
+
+      // Set initial status
+      setStatus();
+
+      // Set events
+      battery.addEventListener("levelchange", setStatus, false);
+      battery.addEventListener("chargingchange", setStatus, false);
+      battery.addEventListener("chargingtimechange", setStatus, false);
+      battery.addEventListener("dischargingtimechange", setStatus, false);
+    } else {
+      throw new Error('Battery API not supported on your device/computer');
+    }
+  };
+
+  let noGood = function(error) {
+    batterySupported.innerHTML = error.message;
+  };
+
+  navigator.getBattery() //returns a promise
+    .then(success)
+    .catch(noGood);
+})();
+@import url('https://fonts.googleapis.com/css2? 
+   family=Roboto:wght@300&display=swap');
+
+/* General font styles */
+
+html {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+img {
+  border: none;
+  vertical-align: middle;
+}
+
+
+/* Basic element styles */
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+html {
+  color: #000;
+}
+
+body {
+  padding-top: 20px;
+}
+
+body {
+  margin-bottom: 30px;
+}
+
+ul {
+  margin: 10px 0;
+}
+
+
+/* Structure */
+
+.container {
+  background: #fff;
+  border-top: none;
+  text-align: center;
+}
+
+#battery-supported {
+  color: #f00;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Battery API</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>
+      Battery API demo
+    </h1>
+
+    <section class="main-content">
+      <p>A demo of the Battery API</p>
+
+      <p id="battery-supported"></p>
+
+      <p>Battery level is <b id="battery-level"></b></p>
+
+      <p>Battery status is <b id="charging-status"></b><b>charging</b></p>
+
+      <p>Battery will be fully charged in <b id="battery-charged"></b> 
+minutes.</p>
+
+      <p>Battery will be discharged in <b id="battery-discharged"></b> 
+minutes.</p>
+
+
+    </section>
+
+        <p class="footer">All the code is available in the <a 
+href="https://github.com/robnyman/robnyman.github.com/tree/master/battery">
+ Battery 
+repository on GitHub</a>.</p>
+  </div>
+
+
+
+
+</body>
+
+</html>
