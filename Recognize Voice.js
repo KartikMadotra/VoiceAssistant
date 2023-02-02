@@ -30,6 +30,8 @@ recognition.onresult = function (event) {
     if (transcript.includes("hi jarvis")) {
       readOut("hello sir");
     }
+  }
+}
 
     // change lang command
 
@@ -42,3 +44,4 @@ recognition.onresult = function (event) {
       location.reload()
       readOutHindi("मैं तैयार हूँ, सर")
     }
+  
