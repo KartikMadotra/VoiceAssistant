@@ -26,7 +26,21 @@ var voice = {
           voice.wrap.innerHTML = said;
           voice.stop();
         };
-   
+        const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
         // (A5) ON SPEECH RECOGNITION ERROR
         voice.recog.onerror = (err) => { console.error(evt); };
    
@@ -83,5 +97,6 @@ var cmd = {
 
     "tEMPERATURE TODAY " : () =>{
         console.log("tODAY'S TEMPERAATURE IS 45C");
-    }
+    },
+
   };
