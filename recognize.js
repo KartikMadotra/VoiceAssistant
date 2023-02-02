@@ -71,5 +71,17 @@ var cmd = {
    
     "say hello" : () => {
       alert("Hello World!");
+    },
+    
+    "Open Youtube" : () =>{
+        window.open("www.youtube.com");
+    },
+
+    " humidity Today":()=>{
+        alert("Today's Humidity is "+Humidity);
+    },
+
+    "tEMPERATURE TODAY " : () =>{
+        console.log("tODAY'S TEMPERAATURE IS 45C");
     }
   };
