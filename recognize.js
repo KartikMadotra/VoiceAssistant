@@ -41,6 +41,7 @@ function showPosition(position) {
   "<br>Longitude: " + position.coords.longitude;
 }
 https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+req = $.getJSON(`http://api.openweathermap.org/data/2.5/weather?q=${}&callback=?`);
         // (A5) ON SPEECH RECOGNITION ERROR
         voice.recog.onerror = (err) => { console.error(evt); };
    
@@ -91,7 +92,7 @@ var cmd = {
         window.open("www.youtube.com");
     },
 
-    " humidity Today":()=>{
+    "humidity":()=>{
         alert("Today's Humidity is "+Humidity);
     },
 
